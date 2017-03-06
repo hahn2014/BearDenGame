@@ -57,10 +57,6 @@ public class Button {
 				(y + (Game.r.ButtonHeight + 1) - (m.getStringHeight(text, Game.r.font1) / 2)));
 	}
 	
-	public void tick() {
-		
-	}
-	
 	
 	/*GETTERS AND SETTERS*/
 
@@ -75,5 +71,23 @@ public class Button {
 	}
 	public void setBackgroundColor(Color c) {
 		backcolor = c;
+	}
+	public Boolean isHover() {
+		return isHover;
+	}
+	public void setHover(Boolean hove) {
+		isHover = hove;
+	}
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public int getHeight() {
+		return height;
 	}
 }

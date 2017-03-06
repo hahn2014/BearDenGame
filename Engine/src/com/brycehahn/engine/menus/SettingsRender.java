@@ -8,21 +8,21 @@ import com.brycehahn.engine.main.References;
 import com.brycehahn.engine.maths.Methods;
 import com.brycehahn.engine.menus.ui.Button;
 
-public class MainMenuRender {
+public class SettingsRender {
 	
 	private int x = 0, y = 80, ySpace = 25;//, widthtimes = 0, heighttimes = 0;
 	public static int select = 0;
 	
-	public static Color[] b = new Color[3];
+	public static Color[] b = new Color[6];
 	
-	String[] buttons = new String[3];
+	String[] buttons = new String[6];
 	
-	public Button[] btns = new Button[3];
+	public Button[] btns = new Button[6];
 	
 	private References r;
 	private Methods m;
 
-	public MainMenuRender() {
+	public SettingsRender() {
 		r = Game.r;
 		m = new Methods();
 		
@@ -35,10 +35,14 @@ public class MainMenuRender {
 	}
 	
 	private void defineButtons() {
-		btns[0] = new Button(x, y + (ySpace * 0), "New Game");
-		btns[1] = new Button(x, y + (ySpace * 1), "Settings");
-		btns[2] = new Button(x, y + (ySpace * 2), "Exit Game");
+		btns[0] = new Button(x, y + (ySpace * 0), "1");
+		btns[1] = new Button(x, y + (ySpace * 1), "2");
+		btns[2] = new Button(x, y + (ySpace * 2), "3");
+		btns[3] = new Button(x, y + (ySpace * 3), "4");
+		btns[4] = new Button(x, y + (ySpace * 4), "5");
+		btns[5] = new Button(x, y + (ySpace * 5), "Go Back");
 	}
+	
 	
 	public void tick() {
 		//button hover checking
@@ -66,7 +70,7 @@ public class MainMenuRender {
 //		}
 		g.setColor(Color.WHITE);
 		//title
-		g.drawString(r.NAME, (r.PIXEL.width / 2) - (m.getStringWidth(r.NAME, r.fontLarge) / 2), m.getStringHeight(r.NAME, r.fontLarge));
+		g.drawString("Settings", (r.PIXEL.width / 2) - (m.getStringWidth("Settings", r.fontLarge) / 2), m.getStringHeight("Settings", r.fontLarge));
 //		g.drawImage(Tile.empty, (r.PIXEL.width / 2) - (Tile.logo.getWidth() / 2), 5, 279, 50, null);
 		g.setFont(r.font3);
 		//version

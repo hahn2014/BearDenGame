@@ -17,6 +17,8 @@ hs_err_pid*
 
 # eclipse project generated sources
 bin/
+null/*
+Engine/null\\*
 
 # MacOS generated thumb files
 *.DS_Store

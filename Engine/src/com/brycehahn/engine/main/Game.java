@@ -14,6 +14,10 @@ import com.brycehahn.engine.io.NewComputer;
 import com.brycehahn.engine.io.SettingsLoader;
 import com.brycehahn.engine.maths.FPS;
 import com.brycehahn.engine.menus.MainMenuRender;
+import com.brycehahn.engine.menus.SettingsRender;
+import com.brycehahn.engine.menus.controllers.mainmenu.MenuKey;
+import com.brycehahn.engine.menus.controllers.mainmenu.MenuMouseScroller;
+import com.brycehahn.engine.menus.controllers.settingmenu.SettingKey;
 
 /**
  * Main game class, starts all main processes, and holds main game loop
@@ -33,9 +37,10 @@ public class Game extends Applet implements Runnable {
 	
 	
 	//game scenes
-	MainMenuRender mainmenu;
+	public MainMenuRender mainmenu;
+	public SettingsRender settings;
 	
-	private static Game game;
+	public static Game game;
 	
 	public Game() {
 		initClasses();
@@ -54,11 +59,36 @@ public class Game extends Applet implements Runnable {
 		initListeners();
 	}
 	
-	public void initListeners() {
-//		addKeyListener(new KeyInputListener());
+	// We will instantly initialize the listeners to the main menu,
+	// hence being the first place the user will go to
+	public void initListeners() { 
+		addKeyListener(new MenuKey());
 //		addMouseListener(new MouseInpListener());
-//		addMouseMotionListener(new MouseMotListener());
-//		addMouseWheelListener(new MouseWhlListener());
+//		addMouseMotionListener(new MenuMouseMove());
+		addMouseWheelListener(new MenuMouseScroller());
+	}
+	
+	public void updateMenuListeners() {
+		if (r.MENU == 0) {
+			removeKeyListener(game.getKeyListeners()[0]);
+			addKeyListener(new MenuKey());
+			
+			//removeMouseMotionListener(game.getMouseMotionListeners()[0]);
+			//addMouseMotionListener(new MenuMouseMove());
+			
+			removeMouseWheelListener(game.getMouseWheelListeners()[0]);
+			addMouseWheelListener(new MenuMouseScroller());
+		} else if (r.MENU == 1) {
+			removeKeyListener(game.getKeyListeners()[0]);
+			addKeyListener(new SettingKey());
+
+			//removeMouseMotionListener(game.getMouseMotionListeners()[0]);
+			//addMouseMotionListener(new SettingMouseMove());
+			
+
+			//removeMouseWheelListener(game.getMouseWheelListeners()[0]);
+			//addMouseWheelListener(new SettingMouseScroller());
+		}
 	}
 	
 	public void start() {
@@ -89,6 +119,7 @@ public class Game extends Applet implements Runnable {
 		
 		//game scenes
 		mainmenu = new MainMenuRender();
+		settings = new SettingsRender();
 		
 		//new Tile(); //loading images
 		settingsloader = new SettingsLoader();
@@ -106,7 +137,7 @@ public class Game extends Applet implements Runnable {
 					mainmenu.tick();
 					break;
 				case 1:
-					
+					settings.tick();
 					break;
 				case 2:
 					
@@ -130,7 +161,7 @@ public class Game extends Applet implements Runnable {
 						mainmenu.render(g);
 						break;
 					case 1:
-						
+						settings.render(g);
 						break;
 					case 2:
 						
