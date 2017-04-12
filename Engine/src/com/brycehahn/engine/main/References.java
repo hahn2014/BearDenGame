@@ -15,7 +15,7 @@ public class References {
 	public int 						played = 0;
 	public int 						mosX = MouseInfo.getPointerInfo().getLocation().x;
 	public int						mosY = MouseInfo.getPointerInfo().getLocation().y;
-	public int						MENU = 0; //0 - main menu, 1 - new, 2 - settings, 3 - delete, 4 - load, 5 - pause, 6 - in game
+	public int						MENU = 0; //0 - main menu, 1 - settings, 2 - new world, 3 - load, 4 - pause, 5 - in game
 	public int						worldsCount = 0;
 	public int						imgWidth = 32;
 	public int						imgHeight = 32;
@@ -29,11 +29,12 @@ public class References {
 	
 	public final String 			BUILD = "Pre-Alpha BUILD";
 	public final String				BUILDINITIALS = "pA";
-	public final String				VERSION = "2";
+	public final String				VERSION = "3";
 	public final String				NAME = "Bear Den 2D Game Engine";
 	public String					curWorld = "";
 	public String					splash = "";
 	public String					lastPlayedWorld = "";
+	public String					MENUNAME = "MAIN MENU";
 	
 
 	public final int 				pixelSize = 3;

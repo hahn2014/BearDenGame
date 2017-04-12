@@ -1,4 +1,4 @@
-package com.brycehahn.engine.resources;
+package com.brycehahn.levelmaker.misc;
 
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -6,9 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-
-import com.brycehahn.engine.io.CrashDumping;
-import com.brycehahn.engine.io.NewComputer;
 
 public class Tile {
 	public static final int tileSize 		= 32;
@@ -30,6 +27,13 @@ public class Tile {
 	public static final int[] blank 		= {-1,-1};
 	public static final int[] grass			= {0, 0};
 	public static final int[] path	 		= {1, 0};
+	public static final int[] water	 		= {2, 0};
+	public static final int[] wood	 		= {3, 0};
+	
+	
+	//colliders
+	public static final int[] wallCollision	= {0, 1};
+	public static final int[] deathCollision = {1, 1};
 	//animations
 	public static int[] player = {10, 13};
 	
@@ -42,8 +46,6 @@ public class Tile {
 	//items
 	
 	
-	NewComputer nc = new NewComputer();
-	
 	public Tile() {
 		try {
 			texture			= ImageIO.read(new FileInputStream("res/texture_default.png"));
@@ -53,7 +55,6 @@ public class Tile {
 			ex.printStackTrace();
 			JOptionPane.showMessageDialog(null, ex + "\nWe could not load the resources...\nTry re-intralling the program",
 					"Whoa There!", JOptionPane.ERROR_MESSAGE);
-			CrashDumping.DumpCrash(ex);
 			System.exit(0);
 		}
 	}

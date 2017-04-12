@@ -1,11 +1,8 @@
-package com.brycehahn.engine.maths;
+package com.brycehahn.levelmaker.misc;
 
 import java.awt.Font;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
-
-import com.brycehahn.engine.io.Logger;
-import com.brycehahn.engine.resources.Tile;
 
 public class Methods {
 	/**
@@ -16,7 +13,7 @@ public class Methods {
 	 * @param font The font of the string used to allow the method to calculate the size
 	 * @return the length of the given String as an integer.
 	 */
-	public int getStringWidth(String text, Font font) {
+	public static int getStringWidth(String text, Font font) {
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
 		return (int)(font.getStringBounds(text, frc).getWidth());
@@ -30,32 +27,15 @@ public class Methods {
 	 * @param font The font of the string used to allow the method to calculate the size
 	 * @return the height of the given String as an integer.
 	 */
-	public int getStringHeight(String text, Font font) {
+	public static int getStringHeight(String text, Font font) {
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
 		return (int)(font.getStringBounds(text, frc).getHeight());
 	}
 	
-	/**
-	 * This method will take in a x,y coord for the objects position, the current mouses
-	 * x,y coord, the width and height of the object, and the buffer room (how much leniency
-	 * the test will have with the mouse)
-	 * @param x Objects x position on the screen
-	 * @param y Objects y position on the screen
-	 * @param mouseX Current mouse x position
-	 * @param mouseY Current mouse y position
-	 * @param width Objects width in pixels
-	 * @param height Objects height in pixels
-	 * @param buffer pixel leniency between the borders of the object
-	 * @return
-	 */
-	public boolean isMouseIn(int x, int y, int mouseX, int mouseY, int width, int height, int buffer) {
-		x = x * Tile.tileSize;
-		
-		if (mouseX >= (x - buffer) && mouseX <= (x + width + buffer)) {
-			if (mouseY >= (y - buffer) && mouseY <= (y + height + buffer)) {
-				
-				Logger.info("[" + mouseX + ", " + mouseY + "] is within [" + (x - buffer) + ", " + (y - buffer) + "] and [" + (x + width + buffer) + ", " + (y + height + buffer) + "]");
+	public static boolean isMouseIn(int mouseX, int mouseY, int x1, int y1, int x2, int y2) {
+		if (mouseX >= x1 && mouseX <= x2) {
+			if (mouseY >= y1 && mouseY <= y2) {
 				return true;
 			}
 		}

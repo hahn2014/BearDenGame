@@ -7,11 +7,12 @@ import com.brycehahn.engine.main.Game;
 import com.brycehahn.engine.main.References;
 import com.brycehahn.engine.maths.Methods;
 import com.brycehahn.engine.menus.ui.Button;
+import com.brycehahn.engine.resources.Tile;
 
 public class SettingsRender {
 	
-	private int x = 0, y = 80, ySpace = 25;//, widthtimes = 0, heighttimes = 0;
-	public static int select = 0;
+	private int x = 0, y = 50, ySpace = 25, widthtimes = 0, heighttimes = 0;
+	public static int selected = 0, min = 0, max = 5;
 	
 	public static Color[] b = new Color[6];
 	
@@ -28,8 +29,8 @@ public class SettingsRender {
 		
 		x = (r.PIXEL.width / 2) - (r.lrgButtonWidth / 2);
 		
-//		widthtimes = (r.PIXEL.width / Tile.tileSize) + 1;
-//		heighttimes = (r.PIXEL.height / Tile.tileSize) + 1;
+		widthtimes = (r.PIXEL.width / Tile.tileSize) + 1;
+		heighttimes = (r.PIXEL.height / Tile.tileSize) + 1;
 		
 		defineButtons();
 	}
@@ -47,7 +48,7 @@ public class SettingsRender {
 	public void tick() {
 		//button hover checking
 		for (int i = 0; i < btns.length; i++) {
-			if (select == i) {
+			if (selected == i) {
 				btns[i].setHover(true);
 			} else {
 				btns[i].setHover(false);
@@ -58,16 +59,18 @@ public class SettingsRender {
 	public void render(Graphics g) {
 		g.setFont(r.fontLarge);
 		g.setColor(r.emptyBG);
-//		try {
-//			for (int x = 0; x < widthtimes; x++) {
-//				for (int y = 0; y < heighttimes; y++) {
-//					g.fillRect(-4 + (Tile.tileSize * x), -6 + (Tile.tileSize * y), Tile.tileSize, Tile.tileSize);
-//				}
-//			}
-//		} catch (Exception e) {
+		try {
+			int[] id = Tile.path;
+			for (int x = 0; x < widthtimes; x++) {
+				for (int y = 0; y < heighttimes; y++) {
+					g.drawImage(Tile.texture, x * 32, y * 32, (x * 32) + 32, (y * 32) + 32, id[0] * Tile.tileSize, id[1] * Tile.tileSize,
+							id[0] * Tile.tileSize + Tile.tileSize, id[1] * Tile.tileSize + Tile.tileSize, null);
+				}
+			}
+		} catch (Exception e) {
 //			CrashDumping.DumpCrash(e);
 			g.fillRect(0, 0, r.PIXEL.width, r.PIXEL.height);
-//		}
+		}
 		g.setColor(Color.WHITE);
 		//title
 		g.drawString("Settings", (r.PIXEL.width / 2) - (m.getStringWidth("Settings", r.fontLarge) / 2), m.getStringHeight("Settings", r.fontLarge));

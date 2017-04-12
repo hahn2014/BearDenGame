@@ -1,10 +1,9 @@
-package com.brycehahn.engine.menus.ui;
+package com.brycehahn.levelmaker.misc;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.brycehahn.engine.main.Game;
-import com.brycehahn.engine.maths.Methods;
+import com.brycehahn.levelmaker.Game;
 
 public class Button {
 	
@@ -12,7 +11,6 @@ public class Button {
 	private String text = "";
 	private boolean isHover = false;
 	private Color foreground = Color.WHITE, foregroundHover = Color.WHITE, backcolor = Color.BLACK, backcolorHover = Color.LIGHT_GRAY;
-	private Methods m = new Methods();
 	
 	/*CONSTRUCTORS*/
 	
@@ -56,13 +54,12 @@ public class Button {
 	/*TICKING AND RENDERING*/
 	
 	public void render(Graphics g) {
+		g.setFont(Game.font);
 		g.setColor(!isHover ? backcolor : backcolorHover);
 		g.fillRect(x, y, width, height);
 		
 		g.setColor(!isHover ? foreground : foregroundHover);
-		g.drawString(text, (x + (width / 2)) 
-				- (m.getStringWidth(text, Game.r.font1) / 2),
-				(y + (height / 2) + (m.getStringHeight(text, Game.r.font1) / 2) - 3));
+		g.drawString(text, (x + (width / 2) - (Methods.getStringWidth(text, Game.font) / 2)), (y + (height / 2) + (Methods.getStringHeight(text, Game.font) / 2) - 3));
 	}
 	
 	
@@ -95,7 +92,13 @@ public class Button {
 	public int getWidth() {
 		return width;
 	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
 	public int getHeight() {
 		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }

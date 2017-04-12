@@ -17,9 +17,8 @@ import com.brycehahn.engine.main.References;
 
 public class SettingsLoader {
 	
-	Game mc = Game.getGame();
-	@SuppressWarnings("static-access")
-	References r = mc.getReferences();
+	Game mc = Game.game;
+	References r = Game.r;
 
 	@SuppressWarnings("static-access")
 	public void loadSettings(String file) {

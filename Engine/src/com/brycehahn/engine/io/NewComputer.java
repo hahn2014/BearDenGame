@@ -39,7 +39,7 @@ public class NewComputer {
 			Logger.debug("Settings file is missing. We will recreate it");
 			try {
 				new File(settingsFile).createNewFile();
-				Game.getReferences().needIni = true;
+				Game.r.needIni = true;
 			} catch (IOException e) {
 				CrashDumping.DumpCrash(e);
 			}

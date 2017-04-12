@@ -13,11 +13,15 @@ import com.brycehahn.engine.io.Logger;
 import com.brycehahn.engine.io.NewComputer;
 import com.brycehahn.engine.io.SettingsLoader;
 import com.brycehahn.engine.maths.FPS;
+import com.brycehahn.engine.menus.GameRender;
 import com.brycehahn.engine.menus.MainMenuRender;
+import com.brycehahn.engine.menus.NewWorldRender;
 import com.brycehahn.engine.menus.SettingsRender;
-import com.brycehahn.engine.menus.controllers.mainmenu.MenuKey;
-import com.brycehahn.engine.menus.controllers.mainmenu.MenuMouseScroller;
-import com.brycehahn.engine.menus.controllers.settingmenu.SettingKey;
+import com.brycehahn.engine.menus.controllers.KeyInputListener;
+import com.brycehahn.engine.menus.controllers.MouseMoveListener;
+import com.brycehahn.engine.menus.controllers.MouseScrolListener;
+import com.brycehahn.engine.player.Player;
+import com.brycehahn.engine.resources.Tile;
 
 /**
  * Main game class, starts all main processes, and holds main game loop
@@ -39,8 +43,11 @@ public class Game extends Applet implements Runnable {
 	//game scenes
 	public MainMenuRender mainmenu;
 	public SettingsRender settings;
+	public NewWorldRender newworld;
+	public GameRender ingame;
 	
 	public static Game game;
+	public static Player player;
 	
 	public Game() {
 		initClasses();
@@ -54,7 +61,7 @@ public class Game extends Applet implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		setFrameSize(r.fullscreen);
-		frame.setTitle(r.NAME + " " + r.BUILD + " " + r.VERSION);
+		frame.setTitle(r.NAME + " " + r.BUILDINITIALS + r.VERSION);
 		setPreferredSize(r.SIZE);
 		initListeners();
 	}
@@ -62,33 +69,10 @@ public class Game extends Applet implements Runnable {
 	// We will instantly initialize the listeners to the main menu,
 	// hence being the first place the user will go to
 	public void initListeners() { 
-		addKeyListener(new MenuKey());
+		addKeyListener(new KeyInputListener());
 //		addMouseListener(new MouseInpListener());
-//		addMouseMotionListener(new MenuMouseMove());
-		addMouseWheelListener(new MenuMouseScroller());
-	}
-	
-	public void updateMenuListeners() {
-		if (r.MENU == 0) {
-			removeKeyListener(game.getKeyListeners()[0]);
-			addKeyListener(new MenuKey());
-			
-			//removeMouseMotionListener(game.getMouseMotionListeners()[0]);
-			//addMouseMotionListener(new MenuMouseMove());
-			
-			removeMouseWheelListener(game.getMouseWheelListeners()[0]);
-			addMouseWheelListener(new MenuMouseScroller());
-		} else if (r.MENU == 1) {
-			removeKeyListener(game.getKeyListeners()[0]);
-			addKeyListener(new SettingKey());
-
-			//removeMouseMotionListener(game.getMouseMotionListeners()[0]);
-			//addMouseMotionListener(new SettingMouseMove());
-			
-
-			//removeMouseWheelListener(game.getMouseWheelListeners()[0]);
-			//addMouseWheelListener(new SettingMouseScroller());
-		}
+		addMouseMotionListener(new MouseMoveListener());
+		addMouseWheelListener(new MouseScrolListener());
 	}
 	
 	public void start() {
@@ -108,7 +92,7 @@ public class Game extends Applet implements Runnable {
 
 		Logger.info("Finished Settings Things Up");
 		Logger.info("now reading settings");
-		settingsloader.loadSettings(NewComputer.settingsFile);
+		//settingsloader.loadSettings(NewComputer.settingsFile);
 	}
 	
 	private void initClasses() {
@@ -120,8 +104,12 @@ public class Game extends Applet implements Runnable {
 		//game scenes
 		mainmenu = new MainMenuRender();
 		settings = new SettingsRender();
+		newworld = new NewWorldRender();
 		
-		//new Tile(); //loading images
+		ingame = new GameRender();
+		player = new Player(0, 0);
+		
+		new Tile(); //loading images
 		settingsloader = new SettingsLoader();
 	}
 	
@@ -140,7 +128,11 @@ public class Game extends Applet implements Runnable {
 					settings.tick();
 					break;
 				case 2:
+					newworld.tick();
+					break;
 					
+				case 5:
+					ingame.tick();
 					break;
 			}
 		} else {
@@ -164,7 +156,12 @@ public class Game extends Applet implements Runnable {
 						settings.render(g);
 						break;
 					case 2:
+						newworld.render(g);
+						break;
 						
+						
+					case 5:
+						ingame.render(g);
 						break;
 				}
 			} else {
@@ -175,7 +172,6 @@ public class Game extends Applet implements Runnable {
 				g.drawString(r.BUILD + " " + r.VERSION, 311, 8);
 			}
 			FPS.render(g);
-			
 			
 			g = getGraphics();
 			g.drawImage(screen, 0, 0, r.SIZE.width, r.SIZE.height, 0, 0, r.PIXEL.width, r.PIXEL.height, null);
@@ -225,6 +221,7 @@ public class Game extends Applet implements Runnable {
 			}
 			if (arg.equalsIgnoreCase("-development")) {
 				Logger.debug("Running game as developer");
+				Logger.setDebug(true);
 				r.development = true;
 			}
 		}

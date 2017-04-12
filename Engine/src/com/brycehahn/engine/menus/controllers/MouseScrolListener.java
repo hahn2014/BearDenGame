@@ -1,12 +1,11 @@
-package com.brycehahn.engine.menus.controllers.mainmenu;
+package com.brycehahn.engine.menus.controllers;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import com.brycehahn.engine.io.Logger;
-import com.brycehahn.engine.menus.MainMenuRender;
 
-public class MenuMouseScroller implements MouseWheelListener {
+public class MouseScrolListener implements MouseWheelListener {
 	public static int selected = 0;
 	private int min = 0;
 	private int max = 2;
@@ -30,7 +29,5 @@ public class MenuMouseScroller implements MouseWheelListener {
 				Logger.error("There was an error going down!");
 			}
 		}
-
-		MainMenuRender.select = selected;
 	}
 }
