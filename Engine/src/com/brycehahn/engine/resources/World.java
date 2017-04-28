@@ -1,48 +1,36 @@
 package com.brycehahn.engine.resources;
 
-import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
-
 public class World {
-	public List<Chunk> chunks;
+	public static Block[][] blocks;
+	public static int maxX = 100, maxY = 100;
 	
-	public World() {
-		chunks = new ArrayList<Chunk>();
-		spawnChunks();
+	public World(int width, int height) {
+		maxX = width; maxY = height;
+		
+		blocks = new Block[maxX][maxY];
+		
+		for (int x = 0; x < maxX; x++) {
+			for (int y = 0; y < maxY; y++) {
+				blocks[x][y] = new Block((x * 32), (y * 32), 32, 32, Tile.water);
+			}
+		}
+		clearLevel();
 	}
 	
-	private void spawnChunks() {
-		for (int i = 0; i < 1; i++) {
-			Chunk c = new Chunk();
-			Block[][] b = new Block[30][30];
-			
-			for (int x = 0; x < 30; x++) {
-				for (int y = 0; y < 30; y++) {
-					b[x][y] = new Block((x * 32), (y * 32), 32, 32, Tile.path);
+	public static void clearLevel() {
+		for (int x = 0; x < blocks.length; x++) {
+			for (int y = 0; y < blocks[0].length; y++) {
+				if ((y == 0 || y == maxY - 1) || (x == 0 || x == maxX - 1)) {
+					blocks[x][y].setID(Tile.wallCollision);
+				} else {
+					blocks[x][y].setID(Tile.water);
 				}
 			}
-			
-			c.setBlocks(b);
-			chunks.add(c);
 		}
 	}
 	
-	public void tick() {
-		
-	}
-	
-	public void render(Graphics g) {
-		for (int i = 0; i < chunks.size(); i++) {
-			chunks.get(i).render(g);
-		}
-	}
-	
-	public List<Chunk> getChunks() {
-		return chunks;
-	}
-	
-	public void setChunks(ArrayList<Chunk> chunks) {
-		this.chunks = chunks;
+	public static void setBlock(int indexX, int indexY, int blockX, int blockY, int[] id) {
+		blocks[indexX][indexY].setLocation(blockX, blockY);
+		blocks[indexX][indexY].setID(id);
 	}
 }

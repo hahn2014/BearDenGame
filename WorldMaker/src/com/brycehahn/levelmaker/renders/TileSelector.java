@@ -48,10 +48,11 @@ public class TileSelector {
 	
 	public void render(Graphics g) {
 		g.setColor(hover);
+		g.setFont(Game.fontLarge);
 		g.fillRect(8, 8, 284, 800);
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Tile Selector", 150 - (Methods.getStringWidth("Tile Selector", Game.font) / 2), 28);
+		g.drawString("Tile Selector", 150 - (Methods.getStringWidth("Tile Selector", Game.fontLarge) / 2), 28);
 		
 		g.setColor(new Color(hover.getRed() + 50, hover.getGreen() + 50, hover.getBlue() + 50));
 		g.fillRect(12, 700, 276, 100);

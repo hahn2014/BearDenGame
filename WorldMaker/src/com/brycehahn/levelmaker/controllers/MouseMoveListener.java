@@ -56,11 +56,13 @@ public class MouseMoveListener implements MouseMotionListener {
 				if (Methods.isMouseIn(e.getX(), e.getY(), LevelScreen.dx + 16, LevelScreen.dy + 34, 756, 940)) { //WITHIN THE ACTUAL EDITOR
 					for (int x = 0; x < LevelStorage.renderBlocks.length; x++) {
 						for (int y = 0; y < LevelStorage.renderBlocks[0].length; y++) {
-							if (Methods.isMouseIn(e.getX(), e.getY(), LevelScreen.dx + 16 + (32 * x), LevelScreen.dy + 34 + (32 * y),
-									LevelScreen.dx + 15 + (32 * (x + 1)), LevelScreen.dy + 33 + (32 * (y + 1)))) {
-								LevelStorage.renderBlocks[x][y].isHover = true;
-							} else {
-								LevelStorage.renderBlocks[x][y].isHover = false;
+							if (LevelScreen.scaling == false) {
+								if (Methods.isMouseIn(e.getX(), e.getY(), LevelScreen.dx + 16 + ((int)(32 * Game.game.render.level.scale) * x), LevelScreen.dy + 34 + ((int)(32 * Game.game.render.level.scale) * y),
+										LevelScreen.dx + 15 + ((int)(32 * Game.game.render.level.scale) * (x + 1)), LevelScreen.dy + 33 + ((int)(32 * Game.game.render.level.scale) * (y + 1)))) {
+									LevelStorage.renderBlocks[x][y].isHover = true;
+								} else {
+									LevelStorage.renderBlocks[x][y].isHover = false;
+								}
 							}
 						}
 					}

@@ -54,26 +54,27 @@ public class KeyInputListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent event) {
 		int key = event.getKeyCode();
-		
-		if (key == KeyEvent.VK_W) {
-			if (Game.game.render.level.viewOffsetY - 1 >= 0) {
-				Game.game.render.level.viewOffsetY -= 1;
-			}
-		} else if (key == KeyEvent.VK_S) {
-			if (LevelStorage.maxY > 29) {
-				if ((29 + Game.game.render.level.viewOffsetY) + 1 < LevelStorage.blocks[0].length - 1) {
-					Game.game.render.level.viewOffsetY += 1;
+		if (Game.game.render.export.active == false && Game.game.render.Import.active == false && Game.game.render.New.active == false) {
+			if (key == KeyEvent.VK_W) {
+				if (Game.game.render.level.viewOffsetY - 1 >= 0) {
+					Game.game.render.level.viewOffsetY -= 1;
 				}
-			}
-		} else if (key == KeyEvent.VK_D) {
-			if (LevelStorage.maxX > 23) {
-				if ((23 + Game.game.render.level.viewOffsetX) + 1 < LevelStorage.blocks.length - 1) {
-					Game.game.render.level.viewOffsetX += 1;
+			} else if (key == KeyEvent.VK_S) {
+				if (LevelStorage.maxY > 29) {
+					if ((29 + Game.game.render.level.viewOffsetY) + 1 < LevelStorage.blocks[0].length) {
+						Game.game.render.level.viewOffsetY += 1;
+					}
 				}
-			}
-		} else if (key == KeyEvent.VK_A) {
-			if (Game.game.render.level.viewOffsetX - 1 >= 0) {
-				Game.game.render.level.viewOffsetX -= 1;
+			} else if (key == KeyEvent.VK_D) {
+				if (LevelStorage.maxX > 23) {
+					if ((23 + Game.game.render.level.viewOffsetX) + 1 < LevelStorage.blocks.length) {
+						Game.game.render.level.viewOffsetX += 1;
+					}
+				}
+			} else if (key == KeyEvent.VK_A) {
+				if (Game.game.render.level.viewOffsetX - 1 >= 0) {
+					Game.game.render.level.viewOffsetX -= 1;
+				}
 			}
 		}
 	}

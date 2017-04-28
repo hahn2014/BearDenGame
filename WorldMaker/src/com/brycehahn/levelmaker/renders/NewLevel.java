@@ -21,7 +21,7 @@ public class NewLevel {
 	public static TextField widthField;
 	public static TextField heightField;
 	
-	public boolean active = true, wError = false, hError = false;
+	public boolean active = false, wError = false, hError = false;
 	
 	public NewLevel() {
 		

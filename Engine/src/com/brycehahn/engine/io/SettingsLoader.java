@@ -30,7 +30,6 @@ public class SettingsLoader {
 				Section section = ini.get("menu");
 				r.autoSave = Boolean.parseBoolean(section.get("autosave"));
 				r.fullscreen = Boolean.parseBoolean(section.get("fullscreen"));
-				mc.setFrameSize(r.fullscreen);
 				r.FPScap = Double.parseDouble(section.get("fpscap"));
 				mc.fps.alterFPSCap(r.FPScap);
 				r.lastPlayedWorld = section.get("lpw");

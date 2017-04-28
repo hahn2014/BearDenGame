@@ -12,7 +12,6 @@ public class TextBox {
 
 	private boolean isHover = false;
 	private Color foreground = Color.WHITE, backcolor = Color.BLACK, backcolorHover = Color.LIGHT_GRAY;
-	private Methods m = new Methods();
 	
 	public TextBox(int x, int y) {
 		this.x = x;
@@ -35,8 +34,8 @@ public class TextBox {
 		
 		g.setColor(foreground);
 		g.drawString(text, (x + (width / 2)) 
-				- (m.getStringWidth(text, Game.r.font1) / 2),
-				(y + (height / 2) + (m.getStringHeight(text, Game.r.font1) / 2) - 3));
+				- (Methods.getStringWidth(text, Game.r.font1) / 2),
+				(y + (height / 2) + (Methods.getStringHeight(text, Game.r.font1) / 2) - 3));
 	}
 	
 	public int getX() {

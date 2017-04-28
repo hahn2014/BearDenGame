@@ -11,7 +11,7 @@ import com.brycehahn.engine.resources.Tile;
 
 public class MainMenuRender {
 	
-	private int x = 0, y = 80, ySpace = 25, widthtimes = 0, heighttimes = 0;
+	private int x = 0, y = 80, ySpace = 70, widthtimes = 0, heighttimes = 0;
 	public static int selected = 0, min = 0, max = 2;
 	
 	public static Color[] b = new Color[3];
@@ -21,11 +21,9 @@ public class MainMenuRender {
 	public Button[] btns = new Button[3];
 	
 	private References r;
-	private Methods m;
 
 	public MainMenuRender() {
 		r = Game.r;
-		m = new Methods();
 		
 		x = (r.PIXEL.width / 2) - (r.lrgButtonWidth / 2);
 		
@@ -36,9 +34,9 @@ public class MainMenuRender {
 	}
 	
 	private void defineButtons() {
-		btns[0] = new Button(x, y + (ySpace * 0), "New Game");
-		btns[1] = new Button(x, y + (ySpace * 1), "Settings");
-		btns[2] = new Button(x, y + (ySpace * 2), "Exit Game");
+		btns[0] = new Button(x, y + (ySpace * 0), 200, 50, "New Game");
+		btns[1] = new Button(x, y + (ySpace * 1), 200, 50, "Settings");
+		btns[2] = new Button(x, y + (ySpace * 2), 200, 50, "Exit Game");
 	}
 	
 	public void tick() {
@@ -70,14 +68,14 @@ public class MainMenuRender {
 		}
 		g.setColor(Color.WHITE);
 		//title
-		g.drawString(r.NAME, (r.PIXEL.width / 2) - (m.getStringWidth(r.NAME, r.fontLarge) / 2), m.getStringHeight(r.NAME, r.fontLarge));
+		g.drawString(r.NAME, (r.PIXEL.width / 2) - (Methods.getStringWidth(r.NAME, r.fontLarge) / 2), Methods.getStringHeight(r.NAME, r.fontLarge));
 //		g.drawImage(Tile.empty, (r.PIXEL.width / 2) - (Tile.logo.getWidth() / 2), 5, 279, 50, null);
 		g.setFont(r.font3);
 		//version
-		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (m.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		//copyright
-		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (m.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
-				r.PIXEL.height - 10 - (m.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (Methods.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
+				r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		g.setFont(r.font1);
 		
 		//button rendering

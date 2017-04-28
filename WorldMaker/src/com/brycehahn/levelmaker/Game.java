@@ -42,7 +42,6 @@ public class Game extends Applet implements Runnable {
 	public Game() {
 		initClasses();
 		frame.dispose();
-		//frame.setUndecorated(true); //windowed borderless
 		frame.pack();
 		frame.setSize(1080, 1080);
 		frame.setPreferredSize(new Dimension(1080, 1080));
@@ -50,7 +49,7 @@ public class Game extends Applet implements Runnable {
 		frame.setEnabled(true);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
-		frame.setTitle("WorldMaker Pre-Alpha Build 1.00");
+		frame.setTitle("WorldMaker Pre-Alpha Build 1.02");
 		initListeners();
 	}
 	
@@ -76,7 +75,6 @@ public class Game extends Applet implements Runnable {
 	private void initClasses() {
 		//game scenes
 		render = new Render();
-		
 		level = new LevelStorage();
 		
 		new Tile(); //loading images
@@ -123,6 +121,13 @@ public class Game extends Applet implements Runnable {
 	public static void main(String[] args) {
 		game = new Game();
 		frame.add(game);
+		
+		for (String arg : args) {
+			if (arg.equalsIgnoreCase("-d")) {
+				MouseScrolListener.allowScroll = false;
+			}
+		}
+		
 		//start game
 		game.start();
 	}

@@ -12,7 +12,6 @@ public class Button {
 	private String text = "";
 	private boolean isHover = false;
 	private Color foreground = Color.WHITE, foregroundHover = Color.WHITE, backcolor = Color.BLACK, backcolorHover = Color.LIGHT_GRAY;
-	private Methods m = new Methods();
 	
 	/*CONSTRUCTORS*/
 	
@@ -56,13 +55,16 @@ public class Button {
 	/*TICKING AND RENDERING*/
 	
 	public void render(Graphics g) {
-		g.setColor(!isHover ? backcolor : backcolorHover);
+		g.setColor(backcolor);
 		g.fillRect(x, y, width, height);
+
+		g.setColor(!isHover ? backcolor : backcolorHover);
+		g.fillRect(x + 4, y + 4, width - 8, height - 8);
 		
 		g.setColor(!isHover ? foreground : foregroundHover);
 		g.drawString(text, (x + (width / 2)) 
-				- (m.getStringWidth(text, Game.r.font1) / 2),
-				(y + (height / 2) + (m.getStringHeight(text, Game.r.font1) / 2) - 3));
+				- (Methods.getStringWidth(text, Game.r.font1) / 2),
+				(y + (height / 2) + (Methods.getStringHeight(text, Game.r.font1) / 2) - 3));
 	}
 	
 	

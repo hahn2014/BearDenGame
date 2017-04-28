@@ -150,9 +150,33 @@ public class KeyInputListener implements KeyListener {
 				}
 			break;
 			
+			/*
+			 * 
+			 *	IN GAME
+			 * 
+			 */
 			case 5:
 				switch (key) {
-					
+					case KeyEvent.VK_W:
+						if (Game.player.yMove != 1) {
+							Game.player.yMove = 0;
+						}
+					break;
+					case KeyEvent.VK_D:
+						if (Game.player.xMove != -1) {
+							Game.player.xMove = 0;
+						}
+					break;
+					case KeyEvent.VK_S:
+						if (Game.player.yMove != -1) {
+							Game.player.yMove = 0;
+						}
+					break;
+					case KeyEvent.VK_A:
+						if (Game.player.xMove != 1) {
+							Game.player.xMove = 0;
+						}
+					break;
 				}
 			break;
 		}
@@ -166,19 +190,19 @@ public class KeyInputListener implements KeyListener {
 		
 		if (r.MENU == 5) { //in a game
 			switch (key) {
-			case KeyEvent.VK_W:
-				Game.player.y -= Game.player.speed;
-			break;
-			case KeyEvent.VK_D:
-				Game.player.x += Game.player.speed;
-			break;
-			case KeyEvent.VK_S:
-				Game.player.y += Game.player.speed;
-			break;
-			case KeyEvent.VK_A:
-				Game.player.x -= Game.player.speed;
-			break;
-		}
+				case KeyEvent.VK_W:
+					Game.player.yMove = -1;
+				break;
+				case KeyEvent.VK_D:
+					Game.player.xMove = 1;
+				break;
+				case KeyEvent.VK_S:
+					Game.player.yMove = 1;
+				break;
+				case KeyEvent.VK_A:
+					Game.player.xMove = -1;
+				break;
+			}
 		}
 	}
 }

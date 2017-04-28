@@ -37,7 +37,7 @@ public class References {
 	public String					MENUNAME = "MAIN MENU";
 	
 
-	public final int 				pixelSize = 3;
+	public final int 				pixelSize = 2;
 	public double					sx = moveFromBorder;
 	public double					sy = moveFromBorder;
 	public double					direction = 0;
@@ -48,7 +48,7 @@ public class References {
 	public double					fallingAcceleration = 0.0025;
 	
 	
-	public Dimension				SIZE = new Dimension(1280, 720);
+	public Dimension				SIZE = new Dimension(1080, 1080);
 	public final Dimension			PIXEL = new Dimension(SIZE.width / (int)(pixelSize), SIZE.height / (int)(pixelSize));
 	
 	

@@ -21,11 +21,9 @@ public class SettingsRender {
 	public Button[] btns = new Button[6];
 	
 	private References r;
-	private Methods m;
 
 	public SettingsRender() {
 		r = Game.r;
-		m = new Methods();
 		
 		x = (r.PIXEL.width / 2) - (r.lrgButtonWidth / 2);
 		
@@ -73,14 +71,14 @@ public class SettingsRender {
 		}
 		g.setColor(Color.WHITE);
 		//title
-		g.drawString("Settings", (r.PIXEL.width / 2) - (m.getStringWidth("Settings", r.fontLarge) / 2), m.getStringHeight("Settings", r.fontLarge));
+		g.drawString("Settings", (r.PIXEL.width / 2) - (Methods.getStringWidth("Settings", r.fontLarge) / 2), Methods.getStringHeight("Settings", r.fontLarge));
 //		g.drawImage(Tile.empty, (r.PIXEL.width / 2) - (Tile.logo.getWidth() / 2), 5, 279, 50, null);
 		g.setFont(r.font3);
 		//version
-		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (m.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		//copyright
-		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (m.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
-				r.PIXEL.height - 10 - (m.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (Methods.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
+				r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		g.setFont(r.font1);
 		
 		//button rendering

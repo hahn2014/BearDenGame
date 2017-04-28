@@ -22,11 +22,9 @@ public class NewWorldRender {
 	TextBox box;
 	
 	private References r;
-	private Methods m;
 
 	public NewWorldRender() {
 		r = Game.r;
-		m = new Methods();
 		
 		x = (r.PIXEL.width / 2) - (r.lrgButtonWidth / 2);
 		
@@ -37,8 +35,8 @@ public class NewWorldRender {
 	}
 	
 	private void defineButtons() {
-		btns[0] = new Button(x, y, 100, 20, "Go Back");
-		btns[1] = new Button(x + 120, y, 100, 20, "New Game");
+		btns[0] = new Button(x, y, 100, 40, "Go Back");
+		btns[1] = new Button(x + 120, y, 100, 40, "New Game");
 		box = new TextBox(x, y);
 	}
 	
@@ -74,16 +72,14 @@ public class NewWorldRender {
 		}
 		g.setColor(Color.WHITE);
 		//title
-		g.drawString("New World", (r.PIXEL.width / 2) - (m.getStringWidth("New World", r.fontLarge) / 2), m.getStringHeight("New World", r.fontLarge));
-//			g.drawImage(Tile.empty, (r.PIXEL.width / 2) - (Tile.logo.getWidth() / 2), 5, 279, 50, null);
+		g.drawString("New Game Save", (r.PIXEL.width / 2) - (Methods.getStringWidth("New Game Save", r.fontLarge) / 2), Methods.getStringHeight("New Game Save", r.fontLarge));
 		g.setFont(r.font3);
 		//version
-		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (m.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		//copyright
-		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (m.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
-				r.PIXEL.height - 10 - (m.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (Methods.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
+				r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		g.setFont(r.font1);
-		
 		box.render(g);
 		
 		//button rendering

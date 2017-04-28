@@ -40,10 +40,11 @@ public class Options {
 	
 	public void render(Graphics g) {
 		g.setColor(hover);
+		g.setFont(Game.fontLarge);
 		g.fillRect(8, 816, 284, 234);
 		
 		g.setColor(Color.WHITE);
-		g.drawString("Level Options", 150 - (Methods.getStringWidth("Level Options", Game.font) / 2), 836);
+		g.drawString("Level Options", 150 - (Methods.getStringWidth("Level Options", Game.fontLarge) / 2), 836);
 		
 		for (Button b : btns) {
 			b.render(g);

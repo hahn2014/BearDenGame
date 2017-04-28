@@ -19,10 +19,10 @@ public class Block extends Rectangle {
 	}
 	
 	
-	public void render(Graphics g, int indexX, int indexY, int xx, int yy) {
+	public void render(Graphics g, int indexX, int indexY, int xx, int yy, double scale) {
 		if (id != Tile.blank) {
-			g.drawImage(Tile.texture, (32 * indexX) + xx, (32 * indexY) + yy, (32 * indexX) + xx + width,
-					(32 * indexY) + yy + height, id[0] * Tile.tileSize, id[1] * Tile.tileSize,
+			g.drawImage(Tile.texture, ((int)(32 * scale) * indexX) + xx, ((int)(32 * scale) * indexY) + yy, ((int)(32 * scale) * indexX) + xx + (int)(width * scale),
+					((int)(32 * scale) * indexY) + yy + (int)(height * scale), id[0] * Tile.tileSize, id[1] * Tile.tileSize,
 					id[0] * Tile.tileSize + Tile.tileSize, id[1] * Tile.tileSize + Tile.tileSize, null);
 		}
 	}

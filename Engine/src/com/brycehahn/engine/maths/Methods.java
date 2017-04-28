@@ -16,7 +16,7 @@ public class Methods {
 	 * @param font The font of the string used to allow the method to calculate the size
 	 * @return the length of the given String as an integer.
 	 */
-	public int getStringWidth(String text, Font font) {
+	public static int getStringWidth(String text, Font font) {
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
 		return (int)(font.getStringBounds(text, frc).getWidth());
@@ -30,7 +30,7 @@ public class Methods {
 	 * @param font The font of the string used to allow the method to calculate the size
 	 * @return the height of the given String as an integer.
 	 */
-	public int getStringHeight(String text, Font font) {
+	public static int getStringHeight(String text, Font font) {
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
 		return (int)(font.getStringBounds(text, frc).getHeight());
@@ -49,7 +49,7 @@ public class Methods {
 	 * @param buffer pixel leniency between the borders of the object
 	 * @return
 	 */
-	public boolean isMouseIn(int x, int y, int mouseX, int mouseY, int width, int height, int buffer) {
+	public static boolean isMouseIn(int x, int y, int mouseX, int mouseY, int width, int height, int buffer) {
 		x = x * Tile.tileSize;
 		
 		if (mouseX >= (x - buffer) && mouseX <= (x + width + buffer)) {
