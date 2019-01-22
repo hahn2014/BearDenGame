@@ -35,7 +35,7 @@ public class ScreenRender {
 		
 		//draw the actual level area
 		g.setColor(Color.BLACK);
-		g.fillRect(dx, dy, r.PIXEL.width, r.PIXEL.height);
+		g.fillRect(dx, dy, r.SIZE.width, r.SIZE.height);
 		
 		//draw the level storage data
 		for (int x = 0; x < World.blocks.length; x++) {

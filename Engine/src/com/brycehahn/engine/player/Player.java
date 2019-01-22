@@ -23,10 +23,10 @@ public class Player {
 		if (xMove == -1) { // left
 			x -= speed;
 		} else if (xMove == 1) { //right
-			if (((x - 32) + speed) <= Game.r.PIXEL.width / 2) {
+			if (((x - 32) + speed) <= Game.r.SIZE.width / 2) {
 				x += speed;
 			} else {
-				if (ScreenRender.blockOffsetX - speed >= -((World.blocks.length * 32) / Game.r.pixelSize)) {
+				if (ScreenRender.blockOffsetX - speed >= -((World.blocks.length * 32))) {
 					ScreenRender.blockOffsetX -= speed;
 					System.out.println("X: " + x + "; offset: " + ScreenRender.blockOffsetX);
 				} else {

@@ -47,10 +47,13 @@ public class KeyInputListener implements KeyListener {
 							r.MENU = 2;
 							r.MENUNAME = "NEW GAME MENU";
 						} else if (MainMenuRender.selected == 1) {
+							//load world
+							
+						} else if (MainMenuRender.selected == 2) {
 							//settings
 							r.MENU = 1;
 							r.MENUNAME = "SETTINGS MENU";
-						} else if (MainMenuRender.selected == 2) {
+						} else if (MainMenuRender.selected == 3) {
 							r.isRunning = false;
 							System.exit(0);
 						} else {

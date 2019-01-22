@@ -127,7 +127,7 @@ public class Game extends Applet implements Runnable {
 	public void render() {
 		g = screen.getGraphics();
 		g.setColor(r.emptyBG);
-		g.fillRect(0, 0, r.PIXEL.width, r.PIXEL.height);
+		g.fillRect(0, 0, r.SIZE.width, r.SIZE.height);
 		if (!r.development) {
 			switch (r.MENU) {
 				case 0:
@@ -150,14 +150,14 @@ public class Game extends Applet implements Runnable {
 			FPS.render(g);
 			
 			g = getGraphics();
-			g.drawImage(screen, 0, 0, r.SIZE.width, r.SIZE.height, 0, 0, r.PIXEL.width, r.PIXEL.height, null);
+			g.drawImage(screen, 0, 0, r.SIZE.width, r.SIZE.height, 0, 0, r.SIZE.width, r.SIZE.height, null);
 			g.dispose();
 		}
 	}
 	
 	@Override
 	public void run() {
-		screen = createVolatileImage(r.PIXEL.width, r.PIXEL.height);
+		screen = createVolatileImage(r.SIZE.width, r.SIZE.height);
 		while(r.isRunning) {
 			
 			tick();

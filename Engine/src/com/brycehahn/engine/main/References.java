@@ -6,8 +6,6 @@ import java.awt.Font;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.AffineTransform;
 
 public class References {
 	
@@ -37,7 +35,6 @@ public class References {
 	public String					MENUNAME = "MAIN MENU";
 	
 
-	public final int 				pixelSize = 2;
 	public double					sx = moveFromBorder;
 	public double					sy = moveFromBorder;
 	public double					direction = 0;
@@ -49,8 +46,6 @@ public class References {
 	
 	
 	public Dimension				SIZE = new Dimension(1080, 1080);
-	public final Dimension			PIXEL = new Dimension(SIZE.width / (int)(pixelSize), SIZE.height / (int)(pixelSize));
-	
 	
 	public Point 					mouse = new Point(0, 0);
 	public Point					moveFramePoint = new Point(0, 0);
@@ -95,7 +90,4 @@ public class References {
 	public final Color 				disabledUn = new Color(185, 20, 20, 160);
 	public final Color 				disabledSe = new Color(255, 20, 20);
 	
-	private static AffineTransform 	affinetransform = new AffineTransform(); 
-
-	public FontRenderContext 		frc = new FontRenderContext(affinetransform, true, true);
 }	

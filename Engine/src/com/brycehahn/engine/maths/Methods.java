@@ -4,9 +4,6 @@ import java.awt.Font;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 
-import com.brycehahn.engine.io.Logger;
-import com.brycehahn.engine.resources.Tile;
-
 public class Methods {
 	/**
 	 * This method will take in a String and will measure how long in pixels the string is
@@ -50,12 +47,12 @@ public class Methods {
 	 * @return
 	 */
 	public static boolean isMouseIn(int x, int y, int mouseX, int mouseY, int width, int height, int buffer) {
-		x = x * Tile.tileSize;
 		
+
+		//Logger.info("[" + mouseX + ", " + mouseY + "] is within [" + (x - buffer) + ", " + (y - buffer) + "] and [" + (x + width + buffer) + ", " + (y + height + buffer) + "]");
 		if (mouseX >= (x - buffer) && mouseX <= (x + width + buffer)) {
 			if (mouseY >= (y - buffer) && mouseY <= (y + height + buffer)) {
 				
-				Logger.info("[" + mouseX + ", " + mouseY + "] is within [" + (x - buffer) + ", " + (y - buffer) + "] and [" + (x + width + buffer) + ", " + (y + height + buffer) + "]");
 				return true;
 			}
 		}

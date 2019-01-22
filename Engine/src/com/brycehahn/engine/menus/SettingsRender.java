@@ -25,10 +25,10 @@ public class SettingsRender {
 	public SettingsRender() {
 		r = Game.r;
 		
-		x = (r.PIXEL.width / 2) - (r.lrgButtonWidth / 2);
+		x = (r.SIZE.width / 2) - (r.lrgButtonWidth / 2);
 		
-		widthtimes = (r.PIXEL.width / Tile.tileSize) + 1;
-		heighttimes = (r.PIXEL.height / Tile.tileSize) + 1;
+		widthtimes = (r.SIZE.width / Tile.tileSize) + 1;
+		heighttimes = (r.SIZE.height / Tile.tileSize) + 1;
 		
 		defineButtons();
 	}
@@ -67,18 +67,18 @@ public class SettingsRender {
 			}
 		} catch (Exception e) {
 //			CrashDumping.DumpCrash(e);
-			g.fillRect(0, 0, r.PIXEL.width, r.PIXEL.height);
+			g.fillRect(0, 0, r.SIZE.width, r.SIZE.height);
 		}
 		g.setColor(Color.WHITE);
 		//title
-		g.drawString("Settings", (r.PIXEL.width / 2) - (Methods.getStringWidth("Settings", r.fontLarge) / 2), Methods.getStringHeight("Settings", r.fontLarge));
-//		g.drawImage(Tile.empty, (r.PIXEL.width / 2) - (Tile.logo.getWidth() / 2), 5, 279, 50, null);
+		g.drawString("Settings", (r.SIZE.width / 2) - (Methods.getStringWidth("Settings", r.fontLarge) / 2), Methods.getStringHeight("Settings", r.fontLarge));
+//		g.drawImage(Tile.empty, (r.SIZE.width / 2) - (Tile.logo.getWidth() / 2), 5, 279, 50, null);
 		g.setFont(r.font3);
 		//version
-		g.drawString(r.BUILD + " " + r.VERSION, 4, r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString(r.BUILD + " " + r.VERSION, 4, r.SIZE.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		//copyright
-		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.PIXEL.width - 6) - (Methods.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
-				r.PIXEL.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
+		g.drawString("Copyright Bryce Hahn. Do not distribute!", (r.SIZE.width - 6) - (Methods.getStringWidth("Copyright Bryce Hahn. Do not distribute!", r.font3)),
+				r.SIZE.height - 10 - (Methods.getStringHeight(r.BUILD + " " + r.VERSION, r.font3) / 2));
 		g.setFont(r.font1);
 		
 		//button rendering
